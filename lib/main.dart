@@ -2,143 +2,80 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Scaffold(
-      backgroundColor: Colors.grey[100],
+    home: Profile(),
+    debugShowCheckedModeBanner: false,
+  ));
+}
+
+class Profile extends StatelessWidget {
+  const Profile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Basketball Drils Workout'),
-        backgroundColor: Colors.blue[100],
+        title: Text('Expense Tracker'),
+        backgroundColor: Colors.blue,
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-
-        children: [
-          Container(
-            margin: EdgeInsets.all(10),
-
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              border: Border.all(
-                color: Colors.blue,
-                width: 5,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'User Profile',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Icon(Icons.person, size: 100),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Text(
+                  'Name',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text('Mikki Mamaradlo'),
+                SizedBox(height: 20),
+                Text(
+                  'Email',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text('22-10952@g.batstate-u.edu.ph'),
+                SizedBox(height: 20),
+                Text(
+                  'Company',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text('Batangas State University TNEU Balayan'),
+                SizedBox(height: 20),
+                Text(
+                  'Contact Number',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text('09706080106'),
+              ],
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Log out logic here
+                },
+                child: Text('Log Out'),
               ),
             ),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Name:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  'Mikki',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Age:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  '23 years old',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(5, 4, 3, 2),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Gender:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  'Male',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  ));
+    );
+  }
 }
