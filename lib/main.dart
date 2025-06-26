@@ -1,144 +1,143 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: Text('Basketball Drils Workout'),
-        backgroundColor: Colors.blue[100],
+  runApp(BasketballDrillsWorkoutApp());
+}
+
+class BasketballDrillsWorkoutApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Basketball Drills Workout',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
+      home: MainNavigation(),
+    );
+  }
+}
 
-        children: [
-          Container(
-            margin: EdgeInsets.all(10),
+class MainNavigation extends StatefulWidget {
+  @override
+  _MainNavigationState createState() => _MainNavigationState();
+}
 
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              border: Border.all(
-                color: Colors.blue,
-                width: 5,
+class _MainNavigationState extends State<MainNavigation> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    HomeScreen(),
+    WorkoutScreen(),
+    ProgressScreen(),
+  ];
+
+  void _onTabTapped(int index) {
+    // Disabled tap interaction
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: IgnorePointer(
+        ignoring: true, // disables interaction
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: _onTabTapped,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.fitness_center),
+              label: 'Workout',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bar_chart),
+              label: 'Progress',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Basketball Drills Workout'),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Let\'s Get to Work',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
+              onPressed: null, // Disabled button
+              child: Text('Start Workout'),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(double.infinity, 50),
               ),
             ),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Column(
               children: [
+                Icon(Icons.sports_basketball, size: 100),
+                SizedBox(height: 10),
                 Text(
-                  'Name:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  'Mikki',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
+                  'Zigzag Dribble',
+                  style: TextStyle(fontSize: 20),
                 ),
               ],
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Age:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  '23 years old',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(5, 4, 3, 2),
-
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Gender:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  'Male',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,  // changed to red
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: Offset(2.0, 2.0),
-                        blurRadius: 10.0,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  ));
+    );
+  }
+}
+
+class WorkoutScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Workout'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(
+          'Workout Routine Placeholder',
+          style: TextStyle(fontSize: 22),
+        ),
+      ),
+    );
+  }
+}
+
+class ProgressScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Progress'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(
+          'Progress Tracker Placeholder',
+          style: TextStyle(fontSize: 22),
+        ),
+      ),
+    );
+  }
 }
