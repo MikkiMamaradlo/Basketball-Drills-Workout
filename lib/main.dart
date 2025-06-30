@@ -10,8 +10,9 @@ class BasketballDrillsWorkoutApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Basketball Drills Workout',
-      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.orange),
       home: Dashboard(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

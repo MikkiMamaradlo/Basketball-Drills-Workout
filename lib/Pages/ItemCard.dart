@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
   final String title;
-  final Color color;
+  final String description;
 
-  ItemCard({required this.title, required this.color});
+  ItemCard({required this.title, required this.description});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: color,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.all(12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 4,
       child: Padding(
         padding: EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Icon(Icons.sports_basketball, size: 30),
-            SizedBox(width: 10),
-            Text(title, style: TextStyle(fontSize: 20)),
-          ],
+        child: ListTile(
+          leading: Icon(Icons.sports_basketball, size: 40, color: Colors.orange),
+          title: Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          subtitle: Text(description),
         ),
       ),
     );

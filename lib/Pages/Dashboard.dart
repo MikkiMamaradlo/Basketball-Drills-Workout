@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Basketball.dart';
 import 'ListItems.dart';
-import 'SettingsScreen.dart'; // Make sure this file exists
+import 'SettingsScreen.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -9,36 +8,27 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  int _selectedIndex = 0;
+  int _currentIndex = 0;
 
-  // Make sure there are exactly 3 widgets here to match the BottomNavigationBar items
   final List<Widget> _screens = [
-    Basketball(),
-    ListItems(),
+    ListItemsScreen(),
     SettingsScreen(),
   ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.blue,
-        items: const [
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.fitness_center),
             label: 'Drills',
           ),
           BottomNavigationBarItem(
