@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'Pages/Dashboard.dart';
+import 'World Time/choose_location.dart';
+import 'World Time/home.dart';
+import 'World Time/loading.dart';
 
-void main() {
-  runApp(BasketballDrillsWorkoutApp());
-}
-
-class BasketballDrillsWorkoutApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Basketball Drills Workout',
-      theme: ThemeData(primarySwatch: Colors.orange),
-      home: Dashboard(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+void main() => runApp(MaterialApp(
+  initialRoute: '/home',
+  routes: {
+    '/': (context) => Loading(),
+    '/home': (context) => Home(),
+    '/Location': (context) => ChooseLocation(),
+  },
+));
