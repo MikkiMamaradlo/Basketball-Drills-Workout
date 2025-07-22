@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../widgets/drill_card.dart';
 import '../data/drill_data.dart';
@@ -10,19 +9,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isFilipino = InheritedSettings.of(context).isFilipino;
+
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            isFilipino ? 'Drill List' : 'Home Page',
-            style: Theme.of(context).textTheme.headline6,
+            isFilipino ? 'Simula' : 'Home',
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 12),
-          ...drills.map((drill) => DrillCard(
-                title: drill['title']!,
-                time: drill['time']!,
-              )),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(isFilipino ? 'Simula Agad' : 'Quick Start'),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            isFilipino ? 'Itinampok na Drill' : 'Featured Drill',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          DrillCard(title: drills[0]['title']!, time: drills[0]['time']!),
         ],
       ),
     );
