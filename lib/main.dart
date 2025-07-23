@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'my_app/app.dart';
+import 'app.dart';
 
 void main() {
   runApp(const BasketballApp());

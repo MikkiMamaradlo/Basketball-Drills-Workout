@@ -1,6 +1,6 @@
-# my_project
+# basketball_drills_workout
 
-A new Flutter project.
+Basketball Drills Workout App
 
 ## Getting Started
 

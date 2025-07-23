@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import '../widgets/drill_card.dart';
-import '../data/drill_data.dart';
-import '../app.dart';
+import '../drill_data.dart';
 
 class ProgressScreen extends StatelessWidget {
-  const ProgressScreen({super.key});
+  final bool isFilipino;
+
+  const ProgressScreen({super.key, required this.isFilipino});
 
   @override
   Widget build(BuildContext context) {
-    final isFilipino = InheritedSettings.of(context).isFilipino;
-
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Text(
             isFilipino ? 'Progreso' : 'Progress',
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           ...drills.map((drill) => DrillCard(
             title: drill['title']!,
-            time: drill['time']!,
+            duration: drill['duration']!,
           )),
         ],
       ),
