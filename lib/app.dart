@@ -1,58 +1,128 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen.dart';
 import 'screens/drill_screen.dart';
 import 'screens/workout_screen.dart';
 import 'screens/progress_screen.dart';
 import 'screens/settings_screen.dart';
 
-class BasketballApp extends StatefulWidget {
-  const BasketballApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<BasketballApp> createState() => _BasketballAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _BasketballAppState extends State<BasketballApp> {
-  bool isFilipino = true;
+class _MyAppState extends State<MyApp> {
+  int _selectedIndex = 0;
   bool isDarkMode = false;
-  int _currentIndex = 0;
+  String language = 'en'; // or 'fil'
 
-  void _onTabTapped(int index) => setState(() => _currentIndex = index);
+  void _onTabSelected(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _toggleTheme(bool value) {
+    setState(() {
+      isDarkMode = value;
+    });
+  }
+
+  void _changeLanguage(String? newLang) {
+    if (newLang != null) {
+      setState(() {
+        language = newLang;
+      });
+    }
+  }
+
+  Widget getCurrentScreen() {
+    switch (_selectedIndex) {
+      case 0:
+        return HomeScreen(
+          isDarkMode: isDarkMode,
+          language: language,
+          onTabSelected: _onTabSelected,
+        );
+      case 1:
+        return DrillScreen(
+          isDarkMode: isDarkMode,
+          language: language,
+          onTabSelected: _onTabSelected,
+        );
+      case 2:
+        return WorkoutScreen(
+          isDarkMode: isDarkMode,
+          language: language,
+          onTabSelected: _onTabSelected,
+        );
+      case 3:
+        return ProgressScreen(
+          isDarkMode: isDarkMode,
+          language: language,
+          onTabSelected: _onTabSelected,
+        );
+      case 4:
+        return SettingsScreen(
+          isDarkMode: isDarkMode,
+          language: language,
+          onThemeChanged: _toggleTheme,
+          onLanguageChanged: _changeLanguage,
+        );
+      default:
+        return Container();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final screens = [
-      HomeScreen(isFilipino: isFilipino),
-      DrillsScreen(isFilipino: isFilipino),
-      WorkoutScreen(isFilipino: isFilipino),
-      ProgressScreen(isFilipino: isFilipino),
-      SettingsScreen(
-        isFilipino: isFilipino,
-        toggleLanguage: () => setState(() => isFilipino = !isFilipino),
-        toggleTheme: () => setState(() => isDarkMode = !isDarkMode),
+    final ThemeData lightTheme = ThemeData.light().copyWith(
+      textTheme: GoogleFonts.poppinsTextTheme(),
+      scaffoldBackgroundColor: Colors.white,
+    );
+
+    final ThemeData darkTheme = ThemeData.dark().copyWith(
+      textTheme: GoogleFonts.poppinsTextTheme(
+        ThemeData.dark().textTheme,
       ),
-    ];
+      scaffoldBackgroundColor: const Color(0xFF0A0E21),
+    );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Basketball Drills Workout',
-      theme: ThemeData(
-        brightness: isDarkMode ? Brightness.dark : Brightness.light,
-        primarySwatch: Colors.orange,
-      ),
+      theme: isDarkMode ? darkTheme : lightTheme,
       home: Scaffold(
-        body: screens[_currentIndex],
+        body: getCurrentScreen(),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: _onTabTapped,
-          selectedItemColor: Colors.orange,
-          unselectedItemColor: Colors.grey,
+          currentIndex: _selectedIndex,
+          onTap: _onTabSelected,
+          selectedItemColor: Colors.yellow[700],
+          unselectedItemColor: Colors.grey[400],
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          type: BottomNavigationBarType.fixed,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: isFilipino ? 'Bahay' : 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.fitness_center), label: isFilipino ? 'Mga Drill' : 'Drills'),
-            BottomNavigationBarItem(icon: Icon(Icons.play_arrow), label: isFilipino ? 'Ehersisyo' : 'Workout'),
-            BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: isFilipino ? 'Progreso' : 'Progress'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: isFilipino ? 'Settings' : 'Settings'),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.home),
+              label: language == 'fil' ? 'Bahay' : 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.sports_basketball),
+              label: language == 'fil' ? 'Ehersisyo' : 'Drills',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.fitness_center),
+              label: language == 'fil' ? 'Workout' : 'Workout',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.bar_chart),
+              label: language == 'fil' ? 'Progreso' : 'Progress',
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.settings),
+              label: language == 'fil' ? 'Setting' : 'Settings',
+            ),
           ],
         ),
       ),
