@@ -25,11 +25,13 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              language == 'fil' ? '🏀 Mabilisang Ehersisyo' : '🏀 Quick Start Workout',
+              language == 'fil'
+                  ? '🏀 Mabilisang Ehersisyo'
+                  : '🏀 Quick Start Workout',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.yellow[700],
-                fontWeight: FontWeight.bold,
-              ),
+                    color: Colors.yellow[700],
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             SizedBox(
@@ -39,12 +41,14 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: Colors.yellow[700],
                   foregroundColor: Colors.blue[900],
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
                 icon: const Icon(Icons.play_arrow),
                 label: Text(
                   language == 'fil' ? 'Simulan ang Ehersisyo' : 'Start Workout',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () => onTabSelected(2),
               ),
@@ -53,8 +57,8 @@ class HomeScreen extends StatelessWidget {
             Text(
               language == 'fil' ? 'Itinatampok na Drill' : 'Featured Drill',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 12),
             DrillCard(drill: featuredDrill, language: language),

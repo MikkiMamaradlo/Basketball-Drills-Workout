@@ -2,7 +2,7 @@ class Drill {
   final String titleEn;
   final String titleFil;
   final String category;
-  final int duration; // in seconds
+  final int duration;
 
   Drill({
     required this.titleEn,
@@ -11,7 +11,5 @@ class Drill {
     required this.duration,
   });
 
-  String getTitle(String language) {
-    return language == 'fil' ? titleFil : titleEn;
-  }
+  String getTitle(String lang) => lang == 'fil' ? titleFil : titleEn;
 }

@@ -25,12 +25,14 @@ class WorkoutScreen extends StatelessWidget {
           Text(
             language == 'fil' ? '🧩 Ehersisyo Ngayon' : '🧩 Today\'s Workout',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.yellow[700],
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.yellow[700],
+                ),
           ),
           const SizedBox(height: 16),
-          ...selectedDrills.map((drill) => DrillCard(drill: drill, language: language)).toList(),
+          ...selectedDrills
+              .map((drill) => DrillCard(drill: drill, language: language))
+              .toList(),
         ],
       ),
     );

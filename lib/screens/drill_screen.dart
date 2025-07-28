@@ -24,21 +24,31 @@ class DrillScreen extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           final category = categories[index];
-          final categoryDrills = allDrills.where((d) => d.category == category).toList();
+          final categoryDrills =
+              allDrills.where((d) => d.category == category).toList();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                language == 'fil'
-                    ? _translateCategory(category)
-                    : category,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Icon(
+                    _getCategoryIcon(category),
+                    color: Colors.yellow[700],
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    language == 'fil' ? _translateCategory(category) : category,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
-              ...categoryDrills.map((drill) => DrillCard(drill: drill, language: language)).toList(),
+              ...categoryDrills
+                  .map((drill) => DrillCard(drill: drill, language: language))
+                  .toList(),
               const SizedBox(height: 24),
             ],
           );
@@ -47,12 +57,25 @@ class DrillScreen extends StatelessWidget {
     );
   }
 
+  IconData _getCategoryIcon(String category) {
+    switch (category) {
+      case 'Handling':
+        return Icons.pan_tool_alt;
+      case 'Shooting Form':
+        return Icons.sports_basketball;
+      case 'Defense':
+        return Icons.shield;
+      default:
+        return Icons.sports;
+    }
+  }
+
   String _translateCategory(String category) {
     switch (category) {
       case 'Handling':
         return 'Paghawak ng Bola';
       case 'Shooting Form':
-        return 'Porma sa Pagbaril';
+        return 'Porma ng Pagbaril';
       case 'Defense':
         return 'Depensa';
       default:

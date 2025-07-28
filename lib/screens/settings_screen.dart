@@ -4,7 +4,7 @@ class SettingsScreen extends StatelessWidget {
   final bool isDarkMode;
   final String language;
   final void Function(bool) onThemeChanged;
-  final void Function(String?) onLanguageChanged; // FIXED here 👈
+  final void Function(String?) onLanguageChanged;
 
   const SettingsScreen({
     super.key,
@@ -23,9 +23,9 @@ class SettingsScreen extends StatelessWidget {
           Text(
             language == 'fil' ? '⚙️ Mga Setting' : '⚙️ Settings',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.yellow[700],
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.yellow[700],
+                ),
           ),
           const SizedBox(height: 24),
           SwitchListTile(
@@ -49,7 +49,7 @@ class SettingsScreen extends StatelessWidget {
                 DropdownMenuItem(value: 'en', child: Text('English')),
                 DropdownMenuItem(value: 'fil', child: Text('Filipino')),
               ],
-              onChanged: onLanguageChanged, // FIXED here 👈
+              onChanged: onLanguageChanged,
             ),
           ),
         ],
