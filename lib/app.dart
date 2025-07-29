@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/home_screen.dart';
 import 'screens/drill_screen.dart';
-import 'screens/workout_screen.dart';
 import 'screens/progress_screen.dart';
 import 'screens/settings_screen.dart';
 
@@ -53,18 +52,12 @@ class _MyAppState extends State<MyApp> {
           onTabSelected: _onTabSelected,
         );
       case 2:
-        return WorkoutScreen(
-          isDarkMode: isDarkMode,
-          language: language,
-          onTabSelected: _onTabSelected,
-        );
-      case 3:
         return ProgressScreen(
           isDarkMode: isDarkMode,
           language: language,
           onTabSelected: _onTabSelected,
         );
-      case 4:
+      case 3:
         return SettingsScreen(
           isDarkMode: isDarkMode,
           language: language,
@@ -112,12 +105,8 @@ class _MyAppState extends State<MyApp> {
               label: language == 'fil' ? 'Ehersisyo' : 'Drills',
             ),
             BottomNavigationBarItem(
-              icon: const Icon(Icons.fitness_center),
-              label: language == 'fil' ? 'Workout' : 'Workout',
-            ),
-            BottomNavigationBarItem(
               icon: const Icon(Icons.bar_chart),
-              label: language == 'fil' ? 'Progreso' : 'Progress',
+              label: language == 'fil' ? 'Sipi' : 'Quote',
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.settings),

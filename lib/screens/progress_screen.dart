@@ -21,7 +21,7 @@ class ProgressScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              language == 'fil' ? '🎯 Progreso' : '🎯 Progress',
+              language == 'fil' ? '🎯 Sipi' : '🎯 Quote',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: Colors.yellow[700],
@@ -38,11 +38,6 @@ class ProgressScreen extends StatelessWidget {
                   : 'Keep training! Every workout is a step closer to greatness.',
               style: const TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 32),
-            Text(
-              language == 'fil' ? 'Kabuuang Drills: 6' : 'Total Drills: 6',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ],
         ),

@@ -18,41 +18,51 @@ class DrillScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final categories = ['Handling', 'Shooting Form', 'Defense'];
 
-    return SafeArea(
-      child: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final category = categories[index];
-          final categoryDrills =
-              allDrills.where((d) => d.category == category).toList();
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        title: Text(language == 'fil' ? '🧩Mga Drills' : '🧩Drills'),
+        backgroundColor: Colors.yellow[700],
+        foregroundColor: Colors.blue[900],
+      ),
+      body: SafeArea(
+        child: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: categories.length,
+          itemBuilder: (context, index) {
+            final category = categories[index];
+            final categoryDrills =
+                allDrills.where((d) => d.category == category).toList();
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    _getCategoryIcon(category),
-                    color: Colors.yellow[700],
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    language == 'fil' ? _translateCategory(category) : category,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              ...categoryDrills
-                  .map((drill) => DrillCard(drill: drill, language: language))
-                  .toList(),
-              const SizedBox(height: 24),
-            ],
-          );
-        },
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      _getCategoryIcon(category),
+                      color: Colors.yellow[700],
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      language == 'fil'
+                          ? _translateCategory(category)
+                          : category,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                ...categoryDrills
+                    .map((drill) => DrillCard(drill: drill, language: language))
+                    .toList(),
+                const SizedBox(height: 24),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
